@@ -42,21 +42,21 @@ const Tourhelp = (props: ITournode) => {
 
       target: () => (props.ref1 as IRef).current,
       placement: "rightBottom",
-      arrow: false,
+
     },
     {
       title: "Save",
       description: "Save your changes.",
       target: () => (props.ref2 as IRef).current,
       placement: "rightBottom",
-      arrow: false,
+
     },
     {
       title: "Other Actions",
       description: "Click to see other actions.",
       target: () => (props.ref3 as IRef).current,
       placement: "rightBottom",
-      arrow: false,
+
     },
   ];
 

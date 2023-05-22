@@ -38,72 +38,40 @@ const Manage = () => {
           maxWidth: 600,
         }}
       >
-        <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
-          <Checkbox>Checkbox</Checkbox>
-        </Form.Item>
-        <Form.Item label="Radio">
-          <Radio.Group>
-            <Radio value="apple"> Apple </Radio>
-            <Radio value="pear"> Pear </Radio>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item label="Input">
+
+
+        <Form.Item label="工号">
           <Input />
         </Form.Item>
-        <Form.Item label="Select">
+        <Form.Item label="姓名">
+          <Input />
+        </Form.Item>
+        <Form.Item label="年龄">
+          <InputNumber />
+        </Form.Item>
+        <Form.Item label="职称">
+          <Input />
+        </Form.Item>
+        <Form.Item label="专业">
+          <Input />
+        </Form.Item>
+        <Form.Item label="学历">
           <Select>
+            <Select.Option value="demo">Demo</Select.Option>
+            <Select.Option value="demo">Demo</Select.Option>
+            <Select.Option value="demo">Demo</Select.Option>
             <Select.Option value="demo">Demo</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="TreeSelect">
-          <TreeSelect
-            treeData={[
-              {
-                title: "Light",
-                value: "light",
-                children: [
-                  {
-                    title: "Bamboo",
-                    value: "bamboo",
-                  },
-                ],
-              },
-            ]}
-          />
-        </Form.Item>
-        <Form.Item label="Cascader">
-          <Cascader
-            options={[
-              {
-                value: "zhejiang",
-                label: "Zhejiang",
-                children: [
-                  {
-                    value: "hangzhou",
-                    label: "Hangzhou",
-                  },
-                ],
-              },
-            ]}
-          />
-        </Form.Item>
-        <Form.Item label="DatePicker">
+
+
+        <Form.Item label="入职日期">
           <DatePicker />
         </Form.Item>
-        <Form.Item label="RangePicker">
-          <RangePicker />
-        </Form.Item>
-        <Form.Item label="InputNumber">
-          <InputNumber />
-        </Form.Item>
-        <Form.Item label="TextArea">
-          <TextArea rows={4} />
-        </Form.Item>
-        <Form.Item label="Switch" valuePropName="checked">
-          <Switch />
-        </Form.Item>
+
+
         <Form.Item
-          label="Upload"
+          label="上传头像"
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
@@ -119,9 +87,9 @@ const Manage = () => {
             </div>
           </Upload>
         </Form.Item>
-        <Form.Item label="Button">
-          <Button>Button</Button>
-        </Form.Item>
+
+        <Button type="primary">更新提交</Button>
+
       </Form>
     </Card>
   );
