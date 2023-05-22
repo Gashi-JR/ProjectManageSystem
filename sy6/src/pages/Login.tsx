@@ -7,6 +7,9 @@ import { log } from "console";
 //@ts-ignore
 import Icon from "supercons";
 import Btn from "../components/btn/Btn";
+import axios from "axios";
+//@ts-ignore
+import { Navigate, useNavigate } from "@/.umi/exports";
 
 interface IForm {
   username: String;
@@ -22,7 +25,7 @@ export default function Login() {
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [loginform] = Form.useForm();
-
+const navigate =useNavigate();
   useEffect(() => {
     document.cookie.split(";").forEach((item) => {
       let arr = item.split("=");
@@ -54,37 +57,59 @@ export default function Login() {
     now.setMinutes(now.getMinutes() + expire);
     document.cookie = key + "=" + value + ";expires=" + now.toUTCString();
   };
-  const onFinish = (values: IForm) => {
-    console.log("Received values of form: ", values);
+  const onFinish = async (values: IForm) => {
+
     //post
     //if()
 
     for (let key in values) {
       setCookie(key, values[key], 600);
     }
+    let res = await axios.post('http://localhost:3000/login', values)
 
-    messageApi.open({
-      type: "success",
-      content: "登录成功",
-    });
+
+    if (res.data.ActionType === 'OK') {
+      messageApi.open({
+        type: "success",
+        content: "登录成功",
+      });
+      navigate('/center/home')
+      localStorage.setItem('userdata', JSON.stringify(Object.assign(res.data.data, { password: '******' })))
+      log(Object.assign(res.data.data, { password: '******' }))
+    }
+
+    else
+      messageApi.open({
+        type: "error",
+        content: "用户名密码不匹配",
+      });
+
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-  const handleRegiste = (values: IForm) => {
-    console.log("file: Login.tsx:35 @ values:", values);
+  const handleRegiste = async (values: IForm) => {
+
 
     setIsreg(!isreg);
     log(isreg);
     if (isreg) {
       //post
-      log("发请求");
-      // if(res.actionType==='Ok')
-      messageApi.open({
-        type: "success",
-        content: "注册成功",
-      });
+      let res = await axios.post('http://localhost:3000/register', values)
+      log(res)
+
+      if (res.data.ActionType === 'CREATED')
+        messageApi.open({
+          type: "success",
+          content: "注册成功",
+        });
+      else
+        messageApi.open({
+          type: "error",
+          content: "注册失败,用户已存在",
+        });
+
     }
   };
 
@@ -144,11 +169,11 @@ export default function Login() {
               >
                 <Input.Password />
               </Form.Item>
-              <Form.Item label="身份" name="role" initialValue="教职工">
+              <Form.Item label="身份" name="role" initialValue="职工">
                 <Select
                   style={{ width: 120 }}
                   options={[
-                    { value: "教职工", label: "教职工" },
+                    { value: "职工", label: "职工" },
                     { value: "部门部长", label: "部门部长" },
                     { value: "管理员", label: "管理员" },
                   ]}
@@ -236,11 +261,11 @@ export default function Login() {
               >
                 <Input.Password />
               </Form.Item>
-              <Form.Item label="身份" name="role" initialValue="教职工">
+              <Form.Item label="身份" name="role" initialValue="职工">
                 <Select
                   style={{ width: 120 }}
                   options={[
-                    { value: "教职工", label: "教职工" },
+                    { value: "职工", label: "职工" },
                     { value: "部门部长", label: "部门部长" },
                     { value: "管理员", label: "管理员" },
                   ]}

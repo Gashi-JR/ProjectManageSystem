@@ -46,8 +46,8 @@ const Manage = () => {
         <Form.Item label="姓名">
           <Input />
         </Form.Item>
-        <Form.Item label="年龄">
-          <InputNumber />
+        <Form.Item label="电话">
+          <Input />
         </Form.Item>
         <Form.Item label="职称">
           <Input />

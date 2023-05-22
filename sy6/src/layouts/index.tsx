@@ -4,6 +4,7 @@ import Topbar from "@/components/topbar/Topbar";
 //@ts-ignore
 import { Layout } from "antd";
 import { Outlet, useLocation, getDvaApp } from "umi";
+import '@/util/axios.config'
 //持久化相关
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";

@@ -9,7 +9,9 @@ export default function Home() {
     top: 60
   });
   const [notificate, setNotificate] = useState(true)
-  useEffect(() => {
+  useEffect(() => {//@ts-ignore
+  console.log(JSON.parse(localStorage.getItem('userdata')));
+    
     if (notificate)
       openNotification()
 
