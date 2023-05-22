@@ -10,14 +10,13 @@ import Icon from "supercons";
 import Tourhelp from "@/components/tourhelp/Tourhelp";
 
 export default function Sidemenu() {
-  const [openKeys, setOpenKeys] = useState([""]);
-  useEffect(() => {
-    setOpenKeys(["/" + currentHerf.pathname.split("/")[1]]);
-  }, []);
+
+
   const currentHerf = useLocation();
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const ref4 = useRef(null);
 
   function getItem(
     label: string | JSX.Element,
@@ -50,28 +49,36 @@ export default function Sidemenu() {
     ),
     getItem(
       <div style={{ display: "flex" }} ref={ref2}>
-        sub2
+        <Icon glyph="github" size={35} /> &nbsp;项目中心
       </div>,
-      "sub2",
+      "/project",
       [
-        getItem("Option 5", "5"),
-        getItem("Option 6", "6"),
-        getItem("Submenu", "sub3", [
-          getItem("Option 7", "7"),
-          getItem("Option 8", "8"),
-        ]),
+        getItem(<Link to={"/project/list"}>项目列表</Link>, "/project/list"),
+        getItem(<Link to={"/project/create"}>创建项目</Link>, "/project/create"),
       ]
     ),
     getItem(
       <div style={{ display: "flex" }} ref={ref3}>
-        sub3
+        <Icon glyph="controls" size={35} /> &nbsp;部门管理
       </div>,
-      "sub4",
+      "/department",
       [
-        getItem("Option 9", "9"),
-        getItem("Option 10", "10"),
-        getItem("Option 11", "11"),
-        getItem("Option 12", "12"),
+        getItem(<Link to={"/department/info"}>部门信息</Link>, "/department/info"),
+        getItem(<Link to={"/department/check"}>入职审核</Link>, "/department/check"),
+        getItem(<Link to={"/department/worker"}>部门成员</Link>, "/department/worker"),
+        getItem(<Link to={"/department/deproject"}>部门项目</Link>, "/department/deproject"),
+      ]
+    ),
+    getItem(
+      <div style={{ display: "flex" }} ref={ref4}>
+        <Icon glyph="help" size={30} />
+        &nbsp; 系统管理
+      </div>,
+      "/system",
+      [
+        getItem(<Link to={"/system/alluser"}>系统用户</Link>, "/system/alluser"),
+        getItem(<Link to={"/system/alldepart"}>系统部门</Link>, "/system/alldepart"),
+        getItem(<Link to={"/system/allproject"}>系统项目</Link>, "/system/allproject"),
       ]
     ),
   ];
