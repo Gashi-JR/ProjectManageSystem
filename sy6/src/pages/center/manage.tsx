@@ -41,35 +41,36 @@ const Manage = (props: any) => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = async (values: any) => {
-  
-    console.log(Object.assign(userdata,values))
-    
+
+    console.log(Object.assign(userdata, values))
 
 
 
-    // let res = await axios.post('http://localhost:3000/update', Object.assign(userdata,values))
 
+    let res = await axios.put('http://localhost:3000/updateInfo', Object.assign(userdata,values))
 
-    // if (res.data.ActionType === 'UPDATE') {
-    //   messageApi.open({
-    //     type: "success",
-    //     content: "更新成功",
-    //   });
-    // props.dispatch({
-    //   type: 'UpdatetipModel/changeUpdatetip',
-    //   payload: {
-    //     bool: false
-    //   }
-    // })
-    //   localStorage.setItem('userdata', JSON.stringify(Object.assign(res.data.data, { password: '******' })))
-    //   console.log(Object.assign(res.data.data, { password: '******' }))
-    // }
+console.log(res.data.data.ActionType);
 
-    // else
-    //   messageApi.open({
-    //     type: "error",
-    //     content: "更新失败，请检查网络",
-    //   });
+    if (res.data.ActionType === 'UPDATED') {
+      messageApi.open({
+        type: "success",
+        content: "更新成功",
+      });
+    props.dispatch({
+      type: 'UpdatetipModel/changeUpdatetip',
+      payload: {
+        bool: false
+      }
+    })
+      localStorage.setItem('userdata', JSON.stringify(Object.assign(res.data.data, { password: '******' })))
+      console.log(Object.assign(res.data.data, { password: '******' }))
+    }
+
+    else
+      messageApi.open({
+        type: "error",
+        content: "更新失败，请检查网络",
+      });
 
   };
 
