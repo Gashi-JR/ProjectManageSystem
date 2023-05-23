@@ -1,6 +1,7 @@
 export default {
   state: {
-    touropen: open,
+    touropen: true,
+
   },
   reducers: {
     changeTouropen(prevstate: object, action: any) {
@@ -9,5 +10,6 @@ export default {
         touropen: action.payload.bool,
       };
     },
+
   },
 };

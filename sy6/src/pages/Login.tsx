@@ -25,7 +25,7 @@ export default function Login() {
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [loginform] = Form.useForm();
-const navigate =useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     document.cookie.split(";").forEach((item) => {
       let arr = item.split("=");
@@ -99,11 +99,15 @@ const navigate =useNavigate();
       let res = await axios.post('http://localhost:3000/register', values)
       log(res)
 
-      if (res.data.ActionType === 'CREATED')
+      if (res.data.ActionType === 'CREATED') {
         messageApi.open({
           type: "success",
           content: "注册成功",
         });
+        setIsreg(!isreg);
+        form.resetFields();
+      }
+
       else
         messageApi.open({
           type: "error",
@@ -273,7 +277,7 @@ const navigate =useNavigate();
               </Form.Item>
 
               <Form.Item wrapperCol={{ offset: 5, span: 22 }}>
-                <Button type="default" onClick={() => setIsreg(false)}>
+                <Button type="default" onClick={() => { setIsreg(false); form.resetFields(); }}>
                   返回
                 </Button>
                 <Button
