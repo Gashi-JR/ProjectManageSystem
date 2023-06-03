@@ -1,0 +1,43 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+<<<<<<< HEAD
+    "start": "node bin/www",
+=======
+    "start": "nodemon bin/www",
+>>>>>>> e00c4e0 (登录注册模块)
+    "dev": "./node_modules/.bin/nodemon bin/www",
+    "prd": "pm2 start bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "ejs": "~2.3.3",
+    "jsonwebtoken": "^9.0.0",
+    "koa": "^2.7.0",
+<<<<<<< HEAD
+=======
+    "koa-body": "^6.0.1",
+>>>>>>> e00c4e0 (登录注册模块)
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "koa2": "^2.0.0-alpha.7",
+    "koa2-cors": "^2.0.6",
+<<<<<<< HEAD
+=======
+    "multer": "^1.4.5-lts.1",
+>>>>>>> e00c4e0 (登录注册模块)
+    "mysql2": "^3.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
