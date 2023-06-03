@@ -1,13 +1,13 @@
 export default {
-    state: {
-        updatetip: true
+  state: {
+    updatetip: false,
+  },
+  reducers: {
+    changeUpdatetip(prevstate: object, action: any) {
+      return {
+        ...prevstate,
+        updatetip: action.payload.bool,
+      };
     },
-    reducers: {
-        changeUpdatetip(prevstate: object, action: any) {
-            return {
-                ...prevstate,
-                updatetip: action.payload.bool,
-            };
-        },
-    },
+  },
 };

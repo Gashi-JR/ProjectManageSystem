@@ -1,16 +1,14 @@
-//@ts-nocheck
-
-import Deworkers from "@/components/departworkers/Deworkers";
-import { Card } from "antd";
+import Checklist from "@/components/checklist/Checklist";
+import { Card, Button } from "antd";
 import React, { useEffect, useState } from "react";
 import http from "@/util/http";
 
-export default function Worker() {
+export default function Checkuser() {
   const [list, setList] = useState<Array<object>>([]);
   const [reload, setReload] = useState(0);
   useEffect(() => {
     async function getdata() {
-      let res = await http("post", "/showmeb", {
+      let res = await http("post", "/showapply", {
         //@ts-ignore
         departmentid: JSON.parse(localStorage.getItem("userdata")).departmentid,
       });
@@ -25,8 +23,8 @@ export default function Worker() {
   }
 
   return (
-    <Card>
-      <Deworkers userlist={{ list }} reload={{ getReload }} />
+    <Card title="申请列表">
+      <Checklist unpasslist={{ list }} reload={{ getReload }} />
     </Card>
   );
 }

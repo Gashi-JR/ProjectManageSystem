@@ -9,6 +9,20 @@ import { connect } from "umi";
 interface IBtnprop {
   [propsName: string]: any;
 }
+//@ts-ignore
+
+const { ipcRenderer,remote } = window.require("electron");
+console.log(remote);
+
+function minimizeWin() {
+  ipcRenderer.send("min"); // 通知主进程我要进行窗口最小化操作
+}
+function maximizeWin() {
+  ipcRenderer.send("max"); // 通知主进程我要进行最大化 或 还原
+}
+function closeWin() {
+  ipcRenderer.send("close"); // 通知主进程我要关闭
+}
 
 function Btn(props: IBtnprop) {
   const location = useLocation();
@@ -30,24 +44,28 @@ function Btn(props: IBtnprop) {
           }}
         />
       )}
-      <Icon
-        glyph="terminal"
-        size={32}
-        className="icon"
-        style={{ marginTop: "16px", position: "fixed", right: 122 }}
-      />
-      <Icon
+      <div onClick={minimizeWin}>
+        <Icon
+          glyph="terminal"
+          size={32}
+          className="icon"
+          style={{ marginTop: "16px", position: "fixed", right: 122 }}
+        />
+      </div>
+      <div onClick={maximizeWin}> <Icon
         glyph="checkbox"
         size={32}
         className="icon"
         style={{ marginTop: "16px", position: "fixed", right: 72 }}
-      />
-      <Icon
+      /></div>
+      <div onClick={closeWin}>  <Icon
         glyph="view-close"
         size={32}
         className="icon"
         style={{ marginTop: "16px", position: "fixed", right: 22 }}
-      />
+      /></div>
+
+
     </div>
   );
 }
